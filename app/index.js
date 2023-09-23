@@ -10,7 +10,11 @@ import {
   Welcome,
 } from "../components";
 import SignIn from "./signin";
+import Signup from "./Signup";
 import Landing from "../components/common/landing/Landing";
+import Email from "./Email";
+import Code from "./Code";
+import ResetPassword from "./ResetPassword";
 const Home = () => {
   const isLoggedIn = false;
   const router = useRouter();
@@ -29,7 +33,10 @@ const Home = () => {
         }}
       />
       {/* <Landing/> */}
-      <SignIn />
+      {/* <Signup /> */}
+      {/* <Email/> */}
+      {/* <Code/> */}
+      <ResetPassword/>
       
     </SafeAreaView>
   );

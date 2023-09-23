@@ -5,7 +5,7 @@ import CustomButton from '../components/customButton/CustomButton'
 import { ScrollView } from 'react-native-gesture-handler'
 import { images } from '../constants'
 
-const SignIn = () => {
+const Code = () => {
   const {height}=useWindowDimensions()
   const [username, setUsername] = useState("")
   const [password,setPassword]=useState("")
@@ -21,17 +21,15 @@ const SignIn = () => {
     <View style={styles.root}>
       <View style={[styles.sub_root,{height:height*0.3}]} >
           <Image source={images.logo} resizeMode='contain' style={[styles.logo, { height: height * 0.3 }]} />
-          <Text style={styles.logo_text}>Login</Text>
+          <Text style={styles.logo_text}>Enter code sent to your email</Text>
       </View>
 
    
-      <CustomInput type="email" value={username} setValue={setUsername} placeholder="Username or email" icon="icon" />
-      <CustomInput type="email" value={password} setValue={setPassword} placeholder="Password" secureTextEntry={true}/>
-      <CustomButton text="Login" onPress={handleLogin} />
-      <CustomButton text="Forgot password" type='TERTIARY' onPress={handleForgotPassword}/>
-      <CustomButton text="Sign in with Facebook" onPress={handleLogin} bgColor="#E7EAF4" fgColor="#4765A9" icon="icon" />
-      <CustomButton text="Sign in with Google" onPress={handleLogin} bgColor="#FAE9EA" fgColor="#DD4D44"  icon="icon" />
-      <CustomButton text="Don't have an account" type='TERTIARY' onPress={handleForgotPassword} />
+      <CustomInput  value={username} setValue={setUsername} placeholder="123-456" icon="icon" />
+      
+        <CustomButton text="Submit" onPress={handleLogin} />
+        <CustomButton text="Resend code" onPress={handleLogin} type='SECONDARY'/>
+        
 
       
     </View>
@@ -62,4 +60,5 @@ const SignIn = () => {
       fontWeight:"700"
     }
 })
-export default SignIn
+
+export default Code
