@@ -1,9 +1,10 @@
 import { View, Text, StyleSheet, useWindowDimensions, Image } from 'react-native'
 import React, { useState } from 'react'
-import { CustomInput } from '../components'
+import { CustomInput, ScreenHeaderBtn } from '../components'
 import CustomButton from '../components/customButton/CustomButton'
 import { ScrollView } from 'react-native-gesture-handler'
-import { images } from '../constants'
+import { icons, images } from '../constants'
+import { Stack, useRouter } from 'expo-router'
 
 const ResetPassword = () => {
   const {height}=useWindowDimensions()
@@ -16,8 +17,17 @@ const ResetPassword = () => {
   const handleForgotPassword = () => {
   console.warn('forgot password')
   }
+const router=useRouter()
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
+      <Stack.Screen options={
+        {
+          headerShadowVisible: false,
+          headerLeft: () => (
+            <ScreenHeaderBtn iconUrl={icons.left} dimension="60%" onPress={router.back} />
+          )
+      }
+      }></Stack.Screen>
     <View style={styles.root}>
       <View style={[styles.sub_root,{height:height*0.3}]} >
           <Image source={images.logo} resizeMode='contain' style={[styles.logo, { height: height * 0.3 }]} />
