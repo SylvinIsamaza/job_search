@@ -3,15 +3,17 @@ import React, { useState } from 'react'
 import { CustomInput, ScreenHeaderBtn } from '../components'
 import CustomButton from '../components/customButton/CustomButton'
 import { ScrollView } from 'react-native-gesture-handler'
-import { icons, images } from '../constants'
-import { Stack, useRouter } from 'expo-router'
+import { COLORS, icons, images } from '../constants'
+import { Stack, useNavigation, useRouter } from 'expo-router'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
 const ResetPassword = () => {
   const {height}=useWindowDimensions()
   const [username, setUsername] = useState("")
-  const [password,setPassword]=useState("")
-  const handleLogin = () => {
-    console.log('login')
+  const [password, setPassword] = useState("")
+  const navigation=useNavigation()
+  const handleReset = () => {
+   navigation.navigate('home')
   }
 
   const handleForgotPassword = () => {
@@ -19,15 +21,26 @@ const ResetPassword = () => {
   }
 const router=useRouter()
   return (
+    <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite }}>
+    <Stack.Screen
+      options={{
+        headerStyle: { backgroundColor: COLORS.lightWhite },
+        headerShadowVisible: false,
+        headerTitle: "",
+        headerBackVisible: false,
+        headerLeft: () => {
+          return (
+            <ScreenHeaderBtn
+              iconUrl={icons.left}
+              dimension="60%"
+              handlePress={() => router.back()}
+            />
+          );
+        },
+      }}
+    />
     <ScrollView showsVerticalScrollIndicator={false}>
-      <Stack.Screen options={
-        {
-          headerShadowVisible: false,
-          headerLeft: () => (
-            <ScreenHeaderBtn iconUrl={icons.left} dimension="60%" onPress={router.back} />
-          )
-      }
-      }></Stack.Screen>
+
     <View style={styles.root}>
       <View style={[styles.sub_root,{height:height*0.3}]} >
           <Image source={images.logo} resizeMode='contain' style={[styles.logo, { height: height * 0.3 }]} />
@@ -38,13 +51,14 @@ const router=useRouter()
       <CustomInput  value={username} setValue={setUsername} placeholder="password" icon="icon" secureTextEntry={true} />
       <CustomInput  value={username} setValue={setUsername} placeholder="Confirm password" icon="icon" secureTextEntry={true} />
       
-        <CustomButton text="Reset" onPress={handleLogin} />
+        <CustomButton text="Reset" onPress={handleReset} />
         
         
 
       
     </View>
-    </ScrollView>
+      </ScrollView>
+      </SafeAreaView>
 
   )
 }

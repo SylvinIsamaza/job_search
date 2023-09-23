@@ -3,9 +3,10 @@ import styles from "./landing";
 import { Image, Text, View } from "react-native";
 import { icons } from "../../../constants";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { useRouter } from "expo-router";
+import { useNavigation, useRouter } from "expo-router";
 const Landing = () => {
-  const router=useRouter()
+  const router = useRouter()
+  const navigate=useNavigation()
   return (
     <View style={styles.container}>
       <Image
@@ -19,7 +20,7 @@ const Landing = () => {
           Finding job is now easy and faster than ever before{" "}
         </Text>
         <TouchableOpacity style={styles.btn} onPress={() => {
-          router.replace('/home')
+          navigate.navigate('home')
         }}>
           <Text>Hello</Text>
         </TouchableOpacity>

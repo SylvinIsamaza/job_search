@@ -1,12 +1,16 @@
 import { View, Text, StyleSheet, useWindowDimensions, Image } from 'react-native'
 import React, { useState } from 'react'
-import { CustomInput } from '../components'
+import { CustomInput, ScreenHeaderBtn } from '../components'
 import CustomButton from '../components/customButton/CustomButton'
 import { ScrollView } from 'react-native-gesture-handler'
-import { images } from '../constants'
+import { COLORS, icons, images } from '../constants'
+import { SafeAreaView } from 'react-native-safe-area-context'
+import { Stack, useNavigation, useRouter } from 'expo-router'
 
 const Signup = () => {
-  const {height}=useWindowDimensions()
+  const { height } = useWindowDimensions()
+  const navigate = useNavigation()
+  const router=useRouter()
   const [username, setUsername] = useState("")
   const [password,setPassword]=useState("")
   const handleLogin = () => {
@@ -16,7 +20,29 @@ const Signup = () => {
   const handleForgotPassword = () => {
   console.warn('forgot password')
   }
+  const handleNavigateLogin = () => {
+    navigate.navigate('signin')
+  }
   return (
+    <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite }}>
+    <Stack.Screen
+      options={{
+        headerStyle: { backgroundColor: COLORS.lightWhite },
+        headerShadowVisible: false,
+        headerTitle: "",
+        headerBackVisible: false,
+        headerLeft: () => {
+          return (
+            <ScreenHeaderBtn
+              iconUrl={icons.left}
+              dimension="60%"
+              handlePress={() => router.back()}
+            />
+          );
+        },
+
+      }}
+    />
     <ScrollView showsVerticalScrollIndicator={false}>
     <View style={styles.root}>
       <View style={[styles.sub_root,{height:height*0.3}]} >
@@ -36,11 +62,12 @@ const Signup = () => {
      </Text>
       <CustomButton text="Sign up with Facebook" onPress={handleLogin} bgColor="#E7EAF4" fgColor="#4765A9" icon="icon" />
       <CustomButton text="Sign up with Google" onPress={handleLogin} bgColor="#FAE9EA" fgColor="#DD4D44"  icon="icon" />
-      <CustomButton text="Already have account? login" type='TERTIARY' onPress={handleForgotPassword} />
+      <CustomButton text="Already have account? login" type='TERTIARY' onPress={handleNavigateLogin} />
 
       
     </View>
-    </ScrollView>
+      </ScrollView>
+      </SafeAreaView>
 
   )
 }

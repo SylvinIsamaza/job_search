@@ -15,10 +15,13 @@ import Landing from "../components/common/landing/Landing";
 import Email from "./Email";
 import Code from "./Code";
 import ResetPassword from "./ResetPassword";
+import { NavigationContainer } from "@react-navigation/native";
+import Navigation from "../components/navigation/Navigation";
 const Home = () => {
   const isLoggedIn = false;
   const router = useRouter();
   return (
+    
     <SafeAreaView
       style={{
         flex: 1,
@@ -30,15 +33,19 @@ const Home = () => {
           headerStyle: { backgroundColor: COLORS.white },
           headerShadowVisible: false,
           headerTitle: "",
+          
         }}
       />
-      {/* <Landing/> */}
+      {/* <Landing /> */}
+      <SignIn/>
       {/* <Signup /> */}
       {/* <Email/> */}
       {/* <Code/> */}
-      <ResetPassword/>
+      {/* <ResetPassword /> */}
+      {/* <Navigation/> */}
       
-    </SafeAreaView>
+      </SafeAreaView>
+     
   );
 
 };

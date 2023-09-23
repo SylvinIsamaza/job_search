@@ -1,4 +1,11 @@
-import { View, Text, SafeAreaView, ScrollView, Image } from "react-native";
+import {
+  View,
+  Text,
+  SafeAreaView,
+  ScrollView,
+  Image,
+  StyleSheet,
+} from "react-native";
 import { Stack, useRouter } from "expo-router";
 
 import { COLORS, FONT, icons, images, SIZES } from "../constants";
@@ -32,12 +39,22 @@ const login = () => {
         }}
       />
       <ScrollView showsVerticalScrollIndicator={false}>
-        <View style={{ flex: 1, padding: SIZES.medium }}>
-          <Text>Profile</Text>
+        <View style={{ flex: 1, padding: SIZES.medium, alignItems: "center" }}>
+          <Image
+            source={images.profile}
+            resizeMode="contain"
+            style={styles.profile}
+          />
         </View>
       </ScrollView>
     </SafeAreaView>
   );
 };
+const styles = StyleSheet.create({
+  profile: {
+    width: "30%",
+    border: "none",
+  },
+});
 
 export default login;
