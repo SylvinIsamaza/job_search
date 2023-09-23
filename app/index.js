@@ -9,6 +9,7 @@ import {
   ScreenHeaderBtn,
   Welcome,
 } from "../components";
+import SignIn from "./signin";
 import Landing from "../components/common/landing/Landing";
 const Home = () => {
   const isLoggedIn = false;
@@ -27,7 +28,9 @@ const Home = () => {
           headerTitle: "",
         }}
       />
-<Landing/>
+      {/* <Landing/> */}
+      <SignIn />
+      
     </SafeAreaView>
   );
 
