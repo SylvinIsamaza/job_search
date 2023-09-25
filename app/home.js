@@ -9,11 +9,10 @@ import {
   ScreenHeaderBtn,
   Welcome,
 } from "../components";
-const login = () => {
-  const isLoggedIn=true
+const Home = ({ navigation }) => {
+  const isLoggedIn = true;
 
   return (
-
     <SafeAreaView
       style={{
         flex: 1,
@@ -25,10 +24,20 @@ const login = () => {
           headerStyle: { backgroundColor: COLORS.lightWhite },
           headerShadowVisible: false,
           headerLeft: () => (
-            <ScreenHeaderBtn iconUrl={icons.menu} dimension="60%"  />
+            <ScreenHeaderBtn
+              iconUrl={icons.menu}
+              dimension="60%"
+              handlePress={() => navigation.openDrawer()}
+            />
           ),
           headerRight: () => (
-            <ScreenHeaderBtn iconUrl={images.profile} dimension="100%" handlePress={() => { !isLoggedIn?router.push('/login'):router.push('/profile') }} />
+            <ScreenHeaderBtn
+              iconUrl={images.profile}
+              dimension="100%"
+              handlePress={() => {
+                !isLoggedIn ? router.push("/login") : router.push("/profile");
+              }}
+            />
           ),
           headerTitle: "",
         }}
@@ -42,7 +51,6 @@ const login = () => {
       </ScrollView>
     </SafeAreaView>
   );
-  
-}
+};
 
-export default login
+export default Home;

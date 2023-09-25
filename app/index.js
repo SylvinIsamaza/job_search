@@ -17,12 +17,18 @@ import Code from "./Code";
 import ResetPassword from "./ResetPassword";
 import { NavigationContainer } from "@react-navigation/native";
 import Navigation from "../components/navigation/Navigation";
+import { createDrawerNavigator } from "@react-navigation/drawer";
+import Drawer from "../components/Drawer";
+import { Provider } from "react-redux";
+import store from "../redux/store";
+
+
 const Home = () => {
-  const isLoggedIn = false;
-  const router = useRouter();
+
   return (
-    
-    <SafeAreaView
+
+    <Provider store={store}>
+          <SafeAreaView
       style={{
         flex: 1,
         backgroundColor: COLORS.white,
@@ -33,20 +39,20 @@ const Home = () => {
           headerStyle: { backgroundColor: COLORS.white },
           headerShadowVisible: false,
           headerTitle: "",
-          
+          headerShown:false
         }}
       />
       {/* <Landing /> */}
-      <SignIn/>
+      <Drawer />
+      {/* <SignIn/> */}
       {/* <Signup /> */}
       {/* <Email/> */}
       {/* <Code/> */}
       {/* <ResetPassword /> */}
       {/* <Navigation/> */}
-      
-      </SafeAreaView>
-     
-  );
+    </SafeAreaView>
+    </Provider>
 
+  );
 };
 export default Home;

@@ -6,15 +6,21 @@ import { ScrollView } from 'react-native-gesture-handler'
 import { COLORS, icons, images } from '../constants'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { Stack, useNavigation, useRouter } from 'expo-router'
+import { Provider, useDispatch } from 'react-redux'
+import store from '../redux/store'
+import { createUser } from '../redux/action/user'
 
 const Signup = () => {
   const { height } = useWindowDimensions()
   const navigate = useNavigation()
   const router=useRouter()
   const [username, setUsername] = useState("")
-  const [password,setPassword]=useState("")
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [cfPassword,setCfPassword]=useState("")
+  const dispatch=useDispatch()
   const handleLogin = () => {
-    console.log('login')
+    dispatch(createUser({username,email,password,cfPassword}))
   }
 
   const handleForgotPassword = () => {
@@ -24,6 +30,8 @@ const Signup = () => {
     navigate.navigate('signin')
   }
   return (
+ 
+
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite }}>
     <Stack.Screen
       options={{
@@ -52,10 +60,10 @@ const Signup = () => {
 
    
         <CustomInput value={username} setValue={setUsername} placeholder="usename" icon="icon" />
-      <CustomInput  value={username} setValue={setUsername} placeholder="Email" icon="icon" />
+      <CustomInput  value={email} setValue={setEmail} placeholder="Email" icon="icon" />
         
         <CustomInput value={password} setValue={setPassword} placeholder="Password" secureTextEntry={true} />
-        <CustomInput value={password} setValue={setPassword} placeholder="Confirm password" secureTextEntry={true}/>
+        <CustomInput value={cfPassword} setValue={setCfPassword} placeholder="Confirm password" secureTextEntry={true}/>
       <CustomButton text="Login" onPress={handleLogin} />
         <Text style={styles.text}>
           By Registering,You confirm that you accept our <Text style={styles.link}> Terms of Service</Text> {' '} and<Text style={styles.link}>Privacy policy</Text>
@@ -68,6 +76,7 @@ const Signup = () => {
     </View>
       </ScrollView>
       </SafeAreaView>
+ 
 
   )
 }

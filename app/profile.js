@@ -10,10 +10,12 @@ import { Stack, useRouter } from "expo-router";
 
 import { COLORS, FONT, icons, images, SIZES } from "../constants";
 
-import { ScreenHeaderBtn } from "../components";
+import { CustomInput, ScreenHeaderBtn } from "../components";
 import { TextInput } from "react-native-gesture-handler";
-const login = () => {
+import { useState } from "react";
+const Profile = () => {
   const router = useRouter();
+  const [username, setUsername] = useState("");
   return (
     <SafeAreaView
       style={{
@@ -39,12 +41,21 @@ const login = () => {
         }}
       />
       <ScrollView showsVerticalScrollIndicator={false}>
-        <View style={{ flex: 1, padding: SIZES.medium, alignItems: "center" }}>
+        <View style={{ flex: 1, padding: 0, alignItems: "center" }}>
           <Image
             source={images.profile}
             resizeMode="contain"
             style={styles.profile}
           />
+        </View>
+        <View style={styles.buttons}>
+          <Text style={styles.label}>Username</Text>
+          <CustomInput value={username} placeholder="username" />
+          <Text style={styles.label}>Full name</Text>
+          <CustomInput value={username} placeholder="username" />
+          <Text style={styles.label}>Email</Text>
+          <CustomInput value={username} placeholder="username" />
+        <Text>Skills</Text>
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -52,9 +63,17 @@ const login = () => {
 };
 const styles = StyleSheet.create({
   profile: {
-    width: "30%",
     border: "none",
+    aspectRatio: "1/1",
+    height: 100,
+    borderRadius: 40,
   },
+  buttons: {
+    padding: 20,
+  },
+  label: {
+    color:"#222"
+  }
 });
 
-export default login;
+export default Profile;

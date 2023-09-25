@@ -5,8 +5,8 @@ import { icons } from "../../../constants";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { useNavigation, useRouter } from "expo-router";
 const Landing = () => {
-  const router = useRouter()
-  const navigate=useNavigation()
+  const router = useRouter();
+  const navigate = useNavigation();
   return (
     <View style={styles.container}>
       <Image
@@ -19,9 +19,12 @@ const Landing = () => {
         <Text style={styles.userName}>
           Finding job is now easy and faster than ever before{" "}
         </Text>
-        <TouchableOpacity style={styles.btn} onPress={() => {
-          navigate.navigate('home')
-        }}>
+        <TouchableOpacity
+          style={styles.btn}
+          onPress={() => {
+            navigate.navigate("homeScreen");
+          }}
+        >
           <Text>Hello</Text>
         </TouchableOpacity>
       </View>

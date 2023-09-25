@@ -12,15 +12,19 @@ import { ScrollView } from "react-native-gesture-handler";
 import { COLORS, icons, images } from "../constants";
 import { Stack, useNavigation, useRouter } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useDispatch } from "react-redux";
+import { login } from "../redux/action/user";
 
-const SignIn = () => {
+const SignIn = ({isLoggedIn, loginStart, loginSuccess }) => {
   const navigate = useNavigation();
   const router = useRouter();
   const { height } = useWindowDimensions();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
   const handleLogin = () => {
-    console.log("login");
+    console.warn("logging in");
+    dispatch(login(username, password));
   };
 
   const handleForgotPassword = () => {
@@ -61,14 +65,12 @@ const SignIn = () => {
           </View>
 
           <CustomInput
-            type="email"
             value={username}
             setValue={setUsername}
             placeholder="Username or email"
             icon="icon"
           />
           <CustomInput
-            type="email"
             value={password}
             setValue={setPassword}
             placeholder="Password"

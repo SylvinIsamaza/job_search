@@ -13,7 +13,7 @@ const ResetPassword = () => {
   const [password, setPassword] = useState("")
   const navigation=useNavigation()
   const handleReset = () => {
-   navigation.navigate('home')
+   navigation.navigate('homeScreen')
   }
 
   const handleForgotPassword = () => {

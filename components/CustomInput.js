@@ -5,6 +5,7 @@ import { TextInput } from 'react-native-gesture-handler'
 const CustomInput = ({value,setValue,placeholder,secureTextEntry}) => {
   return (
     <View style={styles.container}>
+    
       <TextInput placeholder={placeholder} value={value} onChangeText={(text)=>setValue(text)} style={styles.input} secureTextEntry={secureTextEntry} />
     </View>
   )
